@@ -1,0 +1,49 @@
+import React, { useState } from  'react';
+    
+    
+const Formulario2 = () => {
+    const [nombre, setNombre] = useState("");
+    const [apellido, setApellido] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [confirmpassword, setConfirmpassword] = useState("");
+    const createUser = (e) => {
+        e.preventDefault();
+        const newUser = { nombre,apellido, email, password,confirmpassword };
+        console.log("Welcome", newUser);
+    };
+    
+    return(
+    <form onSubmit={ createUser }>
+        <div>
+            <label>Nombre: </label> 
+            <input type="text" onChange={ (e) => setNombre(e.target.value) } />
+            {(nombre.length <2 && nombre !=="") ? <p className='text-danger'>Nombre debe tener al menos 2 caracteres</p> : null}
+            </div>
+            <div>
+                <label>Apellido: </label> 
+                <input type="text" onChange={ (e) => setApellido(e.target.value) } />
+                {(apellido.length <2 && apellido !=="") ? <p className='text-danger'>Apellido debe tener al menos 2 caracteres</p> : null}
+            </div>
+            <div>
+                <label> Email: </label> 
+                <input type="mail" onChange={ (e) => setEmail(e.target.value) } />
+                {(email.length <5 && email !=="") ? <p className='text-danger'>Email debe tener al menos 5 caracteres</p> : null}
+            </div>
+            <div>
+                <label>Contraseña: </label>
+                <input type="password" onChange={ (e) => setPassword(e.target.value) } />
+                {( password.length <8 ) ? <p className='text-danger'>Contraseña debe tener al menos 8 caracteres</p> : null}
+            </div>
+            <div>
+                <label>Confirmar Constraseña: </label> 
+                <input type="password" onChange={ (e) => setConfirmpassword(e.target.value) } />
+                {(confirmpassword.length === password.length ) ? 
+                <p className='text-danger'>La confirmacion debe ser igual a contraseña</p> : null}
+            </div>
+            <button type="submit">Submit</button>
+            </form>
+            );
+};
+    
+export default Formulario2;
